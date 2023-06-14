@@ -1,0 +1,59 @@
+\documentclass[a4paper,oneside,final,12pt]{article}
+\usepackage{cmap}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[english]{babel}
+\newcommand{\comment}[1]{}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsthm}
+\usepackage{wrapfig}
+\usepackage{svg}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
+\DeclareCaptionLabelFormat{gostfigure}{Figure #2}
+\captionsetup[table]{labelsep=endash,justification=justified,singlelinecheck=false,font=normalsize,skip=0pt}
+\captionsetup[figure]{labelformat=gostfigure,labelsep=endash,justification=centering,
+singlelinecheck=false,font=normalsize}
+\usepackage[pdftex,hidelinks,bookmarks=true]{hyperref}
+\usepackage{etoolbox}
+\usepackage{natbib}
+\usepackage{url}
+\newcounter{bibcount}
+\usepackage[nottoc]{tocbibind}
+\newtheorem{theorem}{Lemma}
+\graphicspath{ {../images/} }
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codegreen},
+keywordstyle=\color{magenta},
+numberstyle=\tiny\color{codegray},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+    \newpage
+    \input{src/titlepage.tex}
+    \input{src/contents.tex}
+\end{document}

@@ -1,0 +1,47 @@
+\subsection{Grocery store}
+
+\subsubsection{Delivery}
+
+Chain of grocery stores provides delivery service via website and an application. A customer chooses the necessary product in a list of available items completing the bucket, then chooses the delivery address and pays using online payment methods. Delivery person (courier) chooses a task from the application, accepts it if it’s suitable for a plan and goes to the company’s closest storage of products to fulfill the order. Once the order has completed, the courier reaches the destination address and delivers the product to the customer. Then a new order is chosen and the process repeats again.
+
+\subsubsection{Storage management}
+
+Storage of the products consists of multiple racks divided by the type of the product (bread rack, milk fridge etc). It consists of different rooms with a topology determined by various factors, such as group of products (dairy products, bakery etc), the optimal storing temperature, frequency of items in the orders and many others. Courier goes through the storage and picks up the necessary items. 
+
+\subsection{Clients}
+
+Clients can access the service via application, using a website or with a direct call to the service center. In the system they have a personal area with orders history, favorite products and other options. The client chooses the products and a delivery address. The client’s rating system is provided in order to classify a “bad” client in case of problems and inconveniences from the customer’s side.
+
+\subsection{Couriers}
+
+A courier picks up the products in storage one by one from the list of items. In case of error (e.g. there is no product specified in the order), the courier checks the availability of a product in the other storages. Then in case of absence of a product in all the storages a delivery person communicates with a client and claims that the order can’t be completed. If the item is located in a different storage, the order is assigned to another courier that is closer to a target storage. After all the items are collected, the courier scans the products in a checkout and packs them in a package. The database related to this storage is updated with the changes in quantity of the products. Then the courier leaves the storage to deliver the items to the address specified in the order.
+
+\subsection{software}
+
+The digital part of the delivery service consists of different engineering solutions including a website and an application for both users and couriers.
+
+\subsubsection{Online Service}
+
+The website is dedicated to a client. There is a catalog of goods that can be acquired in a store. It consists of a personal area storing the information about a client (e.g. phone number, age, allergic reactions list), orders history, delivery addresses, favorite food, payment methods etc. Once the order is confirmed, a client can track the delivery and communicate with a courier.
+
+\subsubsection{App (user and couriers)}
+
+The application is divided into two parts: one for the client and one for a delivery person. A client’s app has almost the same features as a website. The courier’s app has a different interface. Once a courier opens the app, there is a list of orders to be completed ranked in the order depending on the distance to a storage and a client and on the average completion time. A courier can accept the order and proceed to the nearest storage. Inside the storage all the racks are marked with a number depending on a category. For instance C12 corresponds to a 12th rack with chocolate cookies in room C with cookies. The number of a shelf on a rack is also indicated in the app. The optimal route is shown to a courier and it’s up to them to decide if they should follow the suggested route or not. As soon as an item is collected, the courier scans the product and puts it in a basket and moves on to the next rack. At the checkout delivery person checks in to show that the job is over. When the order is completed, the courier moves to a destination. The communication with a client is provided via phone call or an app text messages.
+
+\subsubsection{Route planning}
+
+Route planning is divided into two tasks: indoor and outdoor planning. Outdoor route planning consists of calculation of the optimal distance from a courier’s current location to a storage, from a storage to a delivery address using GPS data. It takes into account the weather conditions, traffic, daytime and many other important factors. The main metric is time spent from the completion of the order by a client to a final delivery. It has to be minimized by the algorithm.
+
+The indoor route planning operates inside the storage. Depending on the list of the items in the order the route is calculated minimizing the time spent in a storage to complete the order. The route is shown to a courier on a map of the storage. The statistics about the orders are stored and then the frequency of racks in the order is taken into consideration. The topology of the storage can be reordered putting racks with more frequent items closer to the exit, decreasing the route length.
+
+\subsubsection{Storage DB}
+
+The storage database collects the information about orders, outdoor routes, indoor routes. The database is updated after the completion of the order storing the time spent on each order, the length of route, time spent in a product storage and other useful information.
+
+\subsubsection{Storage topology optimization}
+
+The algorithm considers racks as nodes of a graph and the distance between racks is considered to be a weight of a vertex. The algorithm finds the least possible route length. Another algorithm calculates the optimal positioning of racks in a storage depending on the frequency of appearances of a certain rack in the order. It places the most frequent racks closer to the exit and less frequent further, so the overall route length and therefore time spent to complete one order is decreased.
+
+\subsection{Analytics}
+
+The information about the order, completion time, user data, storage fulfillment, courier’s and user’s feedback is a subject of analysis. It reduces costs and improves the quality of the service.
